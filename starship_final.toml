@@ -244,7 +244,8 @@ format = '[[ ⏱ $duration ](fg:color_yellow bg:color_bg3)]($style)'
 
 [time]
 disabled = false
-time_format = "%R"
+# time_format = "%R"
+time_format = "%I:%M %p"
 style = "bg:color_bg1"
 format = '[[  $time ](fg:color_fg0 bg:color_bg1)]($style)'
 
