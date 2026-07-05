@@ -1,282 +1,383 @@
+# ============================================================================
+# Starship Prompt Configuration — Catppuccin Mocha Edition
+# ============================================================================
+# A polished powerline prompt with Catppuccin Mocha color palette.
+# Requires: Nerd Font patched font (e.g., JetBrainsMono Nerd Font)
+#
+# Install: cp starship.toml ~/.config/starship.toml
+# Docs:    https://starship.rs/config/
+# ============================================================================
+
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# Gradient: Cyan -> Comment(Blue) -> Aqua(Muted) -> Purple -> Comment(Blue) -> Selection(bg3) -> Background(bg1)
+# Gradient: Mauve → Blue → Sapphire → Teal → Sky → Surface0 → Base
 format = """
-[](color_cyan)\
+[<](color_mauve)\
 $os\
 $username\
 $sudo\
-[](bg:color_blue fg:color_cyan)\
+[>](bg:color_blue fg:color_mauve)\
 $directory\
-[](fg:color_blue bg:color_aqua)\
+[>](bg:color_sapphire fg:color_blue)\
 $git_branch\
 $git_commit\
 $git_status\
 $git_metrics\
-[](fg:color_aqua bg:color_purple)\
+[>](bg:color_teal fg:color_sapphire)\
 $aws\
 $kubernetes\
-[](fg:color_purple bg:color_blue)\
-$c\
+$gcloud\
+[>](bg:color_sky fg:color_teal)\
+$nodejs\
+$bun\
+$deno\
+$python\
 $rust\
 $golang\
-$nodejs\
-$php\
 $java\
 $kotlin\
-$haskell\
-$python\
+$swift\
+$typescript\
+$c\
+$cpp\
+$zig\
 $ruby\
 $lua\
-$zig\
-[](fg:color_blue bg:color_bg3)\
+$dart\
+$haskell\
+$elixir\
+$terraform\
+$helm\
+[>](bg:color_surface0 fg:color_sky)\
 $docker_context\
 $conda\
+$nix_shell\
+[>](bg:color_surface1 fg:color_surface0)\
 $memory_usage\
 $battery\
 $cmd_duration\
-[](fg:color_bg3 bg:color_bg1)\
-$time\
-[ ](fg:color_bg1)\
+$jobs\
+[>](fg:color_surface1)\
 $line_break$character"""
 
-palette = 'dracula'
+# ============================================================================
+# Catppuccin Mocha Palette
+# ============================================================================
 
-[palettes.dracula]
-color_fg0 = '#f8f8f2'
-color_bg1 = '#282a36'
-color_bg3 = '#44475a'
-color_blue = '#6272a4'
-color_aqua = '#589981'    # Adjusted: Muted Sea-Green (easier on eyes)
-color_green = '#50fa7b'
-color_orange = '#ffb86c'
-color_purple = '#bd93f9'
-color_red = '#ff5555'
-color_yellow = '#f1fa8c'
-color_cyan = '#61c0d1'    # Adjusted: Muted Cyan
+palette = 'catppuccin_mocha'
 
+[palettes.catppuccin_mocha]
+color_fg0     = '#cdd6f4'  # Text
+color_bg0     = '#1e1e2e'  # Base
+color_surface0= '#313244'  # Surface0
+color_surface1= '#45475a'  # Surface1
+color_blue    = '#89b4fa'  # Blue
+color_sapphire= '#74c7ec'  # Sapphire
+color_sky     = '#89dceb'  # Sky
+color_teal    = '#94e2d5'  # Teal
+color_green   = '#a6e3a1'  # Green
+color_yellow  = '#f9e2af'  # Yellow
+color_peach   = '#fab387'  # Peach
+color_mauve   = '#cba6f7'  # Mauve (purple-pink)
+color_red     = '#f38ba8'  # Red
+color_maroon  = '#eba0ac'  # Maroon
+color_pink    = '#f5c2e7'  # Pink
+color_flamingo= '#f2cdcd'  # Flamingo
+color_lavender= '#b4befe'  # Lavender
 
-# ------------------------------------------------------------------------------
-# SYSTEM & IDENTITY
-# ------------------------------------------------------------------------------
+# ============================================================================
+# OS Module
+# ============================================================================
 
 [os]
 disabled = false
-style = "bg:color_cyan fg:color_fg0"
+style = "bold bg:color_mauve"
 
 [os.symbols]
-Windows = "󰍲"
-Ubuntu = "󰕈"
-SUSE = ""
-Raspbian = "󰐿"
-Mint = "󰣭"
-Macos = "󰀵"
-Manjaro = ""
-Linux = "󰌽"
-Gentoo = "󰣨"
-Fedora = "󰣛"
-Alpine = ""
-Amazon = ""
-Android = ""
-Arch = "󰣇"
-Artix = "󰣇"
-EndeavourOS = ""
-CentOS = ""
-Debian = "󰣚"
-Redhat = "󱄛"
-RedHatEnterprise = "󱄛"
-# Pop = ""
-Pop = " "
-Kali = ""
+Alpine       = "󰣕 "
+Amazon       = "󰅧 "
+Android      = "󰀲 "
+Arch         = "󰣕 "
+Artix        = "󰣕 "
+CentOS       = "󰣕 "
+Debian       = "󰣕 "
+EndeavourOS  = "󰣕 "
+Fedora       = "󰣕 "
+Gentoo       = "󰣕 "
+Linux        = "󰌽 "
+Macos        = "󰀵 "
+Manjaro      = "󰣕 "
+Mint         = "󰣕 "
+Pop          = "󰣕 "
+Raspbian     = "󰣕 "
+Redhat       = "󰣕 "
+RedHatEnterprise = "󰣕 "
+SUSE         = "󰣕 "
+Ubuntu       = "󰕈 "
+Windows      = "󰍲 "
+Kali         = "󰈆 "
+
+# ============================================================================
+# Username Module
+# ============================================================================
 
 [username]
 show_always = true
-style_user = "bg:color_cyan fg:color_fg0"
-style_root = "bg:color_cyan fg:color_fg0"
+style_user = "bold bg:color_mauve"
+style_root = "bold bg:color_mauve"
 format = '[ $user ]($style)'
 
+# ============================================================================
+# Sudo Module
+# ============================================================================
+
 [sudo]
-symbol = " "
-style = "bg:color_cyan fg:color_fg0"
-format = '[ $symbol]($style)'
+symbol = "󰌾 "
+style = "bold bg:color_mauve"
+format = '[ $symbol ]($style)'
 disabled = false
 
-# ------------------------------------------------------------------------------
-# DIRECTORY
-# ------------------------------------------------------------------------------
+# ============================================================================
+# Directory Module
+# ============================================================================
 
 [directory]
-style = "fg:color_fg0 bg:color_blue"
-format = "[ $path ]($style)[$read_only]($style)"
+style = "bold fg:color_fg0 bg:color_blue"
+format = '[ $path ]($style)[$read_only]($style)'
 truncation_length = 3
 truncation_symbol = "…/"
-read_only = " "
+read_only = "󰌾 "
 
 [directory.substitutions]
 "Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = "󰝚 "
-"Pictures" = " "
+"Downloads" = " "
+"Music"     = "󰝚 "
+"Pictures"  = " "
 "Developer" = "󰲋 "
+"Projects"  = "󰲋 "
 
-# ------------------------------------------------------------------------------
-# GIT
-# ------------------------------------------------------------------------------
- 
+# ============================================================================
+# Git Modules
+# ============================================================================
+
 [git_branch]
-#symbol = ""
-symbol = "  "
-style = "bg:color_aqua"
-format = '[[ $symbol $branch ](fg:color_fg0 bg:color_aqua)]($style)'
+symbol = " "
+style = "bold fg:color_fg0 bg:color_sapphire"
+format = '[ $symbol $branch ]($style)'
+
+[git_commit]
+style = "bold fg:color_fg0 bg:color_sapphire"
+format = '[󰜘 $hash ]($style)'
 
 [git_status]
-style = "bg:color_aqua"
-format = '[[($all_status$ahead_behind )](fg:color_fg0 bg:color_aqua)]($style)'
+style = "bold fg:color_fg0 bg:color_sapphire"
+format = '[$all_status$ahead_behind ]($style)'
 
 [git_metrics]
-added_style = "bold fg:color_fg0 bg:color_aqua"
-deleted_style = "bold fg:color_red bg:color_aqua"
 disabled = false
 format = '[+$added]($added_style)[-$deleted]($deleted_style)'
+added_style   = "bold fg:color_green bg:color_sapphire"
+deleted_style = "bold fg:color_red bg:color_sapphire"
 
-# ------------------------------------------------------------------------------
-# CLOUD & INFRASTRUCTURE
-# ------------------------------------------------------------------------------
+# ============================================================================
+# Cloud & Infrastructure Modules
+# ============================================================================
 
 [aws]
-symbol = " "
-style = "bg:color_purple"
-format = '[[ $symbol($profile )(\($region\) )](fg:color_fg0 bg:color_purple)]($style)'
+symbol = "󰸑 "
+style = "bold fg:color_fg0 bg:color_teal"
+format = '[ $symbol $profile ($region) ]($style)'
 
 [kubernetes]
-symbol = "☸ "
-style = "bg:color_purple"
-format = '[[ $symbol$context ](fg:color_fg0 bg:color_purple)]($style)'
+symbol = "󱃾 "
+style = "bold fg:color_fg0 bg:color_teal"
+format = '[ $symbol $context\($namespace\) ]($style)'
 
-# ------------------------------------------------------------------------------
-# LANGUAGES
-# ------------------------------------------------------------------------------
+[gcloud]
+symbol = "󰈺 "
+style = "bold fg:color_fg0 bg:color_teal"
+format = '[ $symbol $project ($region) ]($style)'
+
+[terraform]
+symbol = "󱁢 "
+style = "bold fg:color_fg0 bg:color_teal"
+format = '[ $symbol ($version) ]($style)'
+
+[helm]
+symbol = "󱃾 "
+style = "bold fg:color_fg0 bg:color_teal"
+format = '[ $symbol ($version) ]($style)'
+
+# ============================================================================
+# Language Modules
+# ============================================================================
 
 [nodejs]
-symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+symbol = " "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
 
-[c]
-symbol = " "
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+[bun]
+symbol = "󰏗 "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
 
-[rust]
-symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
-
-[golang]
-symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
-
-[php]
-symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
-
-[java]
-symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
-
-[kotlin]
-symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
-
-[haskell]
-symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+[deno]
+symbol = "󰲔 "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
 
 [python]
-symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+symbol = "󰌠 "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
 
-[ruby]
-symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+[rust]
+symbol = "󱘗 "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
 
-[lua]
-symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+[golang]
+symbol = "󰟓 "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
+
+[java]
+symbol = "󰅱 "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
+
+[kotlin]
+symbol = "󱲀 "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
+
+[swift]
+symbol = "󰛩 "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
+
+[typescript]
+symbol = "󰌦 "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
+
+[c]
+symbol = "󰙱 "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
+
+[cpp]
+symbol = "󰙱 "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
 
 [zig]
-symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+symbol = "󰈙 "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
 
-# ------------------------------------------------------------------------------
-# SYSTEM METRICS & UTILS
-# ------------------------------------------------------------------------------
+[ruby]
+symbol = "󰂔 "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
+
+[lua]
+symbol = "󰢱 "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
+
+[dart]
+symbol = "󰻭 "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
+
+[haskell]
+symbol = "󰈙 "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
+
+[elixir]
+symbol = "󰦥 "
+style = "bold fg:color_fg0 bg:color_sky"
+format = '[ $symbol ($version) ]($style)'
+
+# ============================================================================
+# Container / Environment Modules
+# ============================================================================
 
 [docker_context]
-symbol = ""
-style = "bg:color_bg3"
-format = '[[ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
+symbol = "󰡨 "
+style = "fg:color_flamingo bg:color_surface0"
+format = '[ $symbol $context ]($style)'
 
 [conda]
 symbol = "󱓞 "
-ignore_base = true
-style = "bg:color_bg3"
-format = '[[ $symbol( $environment) ](fg:#83a598 bg:color_bg3)]($style)'
+style = "fg:color_flamingo bg:color_surface0"
+format = '[ $symbol $environment ]($style)'
+
+[nix_shell]
+symbol = "󱄅 "
+style = "fg:color_flamingo bg:color_surface0"
+format = '[ $symbol $state (\($name\)) ]($style)'
+
+# ============================================================================
+# Utility Modules
+# ============================================================================
 
 [memory_usage]
 symbol = "󰍛 "
 disabled = false
 threshold = 75
-style = "bg:color_bg3"
-format = '[[ $symbol${ram} ](fg:color_red bg:color_bg3)]($style)'
+style = "bold fg:color_red bg:color_surface1"
+format = '[ $symbol ${ram} ]($style)'
 
 [battery]
 disabled = false
-# full_symbol = "🔋 "
-full_symbol ="󱈏 "
-charging_symbol = "⚡️ "
+full_symbol    = "󱈏 "
+charging_symbol= "󰂄 "
 discharging_symbol = "💀 "
-# We added the last line (threshold = 100) to force it to show always
+unknown_symbol = "󰂑 "
+empty_symbol   = "󰂎 "
+style = "bold bg:color_surface1"
+format = '[ $symbol $percentage ]($style)'
 display = [
-  { threshold = 10, style = "bold red bg:color_bg3" },
-  { threshold = 30, style = "bold yellow bg:color_bg3" },
-  { threshold = 100, style = "bold green bg:color_bg3" }
+  { threshold = 10, style = "bold fg:color_red bg:color_surface1" },
+  { threshold = 30, style = "bold fg:color_yellow bg:color_surface1" },
+  { threshold = 100, style = "bold fg:color_green bg:color_surface1" },  # threshold=100 forces display
 ]
-format = '[[ $symbol$percentage ]($style)]($style)'
 
 [cmd_duration]
-min_time = 2000
-style = "bg:color_bg3"
-format = '[[ ⏱ $duration ](fg:color_yellow bg:color_bg3)]($style)'
+min_time = 2_000
+style = "bold fg:color_yellow bg:color_surface1"
+format = '[  $duration ]($style)'
+
+[jobs]
+symbol = "󰜱 "
+style = "bold fg:color_lavender bg:color_surface1"
+format = '[ $symbol $number ]($style)'
+
+# ============================================================================
+# Time Module
+# ============================================================================
 
 [time]
 disabled = false
-time_format = "%R"
-style = "bg:color_bg1"
-#format = '[[  $time ](fg:color_fg0 bg:color_bg1)]($style)'
-format = '[[ 󰥔 $time ](fg:color_fg0 bg:color_bg1)]($style)'
+time_format = "%I:%M %p"
+style = "bold fg:color_fg0 bg:color_surface0"
+format = '[ 󰥔 $time ]($style)'
 
-# ------------------------------------------------------------------------------
-# PROMPT
-# ------------------------------------------------------------------------------
+# ============================================================================
+# Prompt Characters
+# ============================================================================
 
 [line_break]
 disabled = false
 
 [character]
-disabled = false
-success_symbol = '[](bold fg:color_green)'
-error_symbol = '[](bold fg:color_red)'
-vimcmd_symbol = '[](bold fg:color_green)'
-vimcmd_replace_one_symbol = '[](bold fg:color_purple)'
-vimcmd_replace_symbol = '[](bold fg:color_purple)'
-vimcmd_visual_symbol = '[](bold fg:color_yellow)'
+success_symbol = '[❯](bold fg:color_green)'
+error_symbol = '[❯](bold fg:color_red)'
+vimcmd_symbol = '[❮](bold fg:color_green)'
+vimcmd_replace_one_symbol = '[❮](bold fg:color_yellow)'
+vimcmd_replace_symbol = '[❮](bold fg:color_yellow)'
+vimcmd_visual_symbol = '[❮](bold fg:color_mauve)'
