@@ -11,14 +11,15 @@ A personal dotfiles repository for shell prompt (Starship) and terminal emulator
 - **`.zshrc`** — Zsh config using Oh My Zsh + plugins (git, zsh-autosuggestions, zsh-syntax-highlighting), conda initialization, Starship prompt, eza aliases, fzf integration.
 - **`ghostty.config`** — Ghostty terminal emulator config: custom theme ("dankcolors"), translucent background with blur, extensive `Alt+S`-based keybindings for tabs/splits/navigation.
 - **`vesper`** — Custom 16-color Ghostty palette (dark background `#101010`, warm accents).
-- **`starship*.toml`** — 11 iterative Starship prompt configurations. Two palette families: Gruvbox Dark (orange/yellow) and Dracula/Nord (cyan/blue/grey). Most evolved variants: `starship_final.toml` (Dracula, Nordic grey bg) and `starship_final_battery.toml` (same + battery module).
+- **`starship.toml`** — Primary Starship prompt config using Catppuccin Mocha palette with powerline segments. Includes all dev modules: 15 languages, git (branch/commit/status/metrics), cloud (AWS, GCP, Kubernetes), Docker, Conda, Nix, battery, memory, cmd_duration, jobs. Requires a Nerd Font patched font.
+- **`starship_*.toml`** — Historical Starship variants (Gruvbox, Dracula/Nord palettes). Kept as experiment log, not active configs.
 - **`Wireshark_Config.zip`** — Exported Wireshark configuration archive.
 
 ## Config Deployment
 
 No automation exists. Manually copy or symlink:
 - `.zshrc` → `~/.zshrc`
-- `starship_final.toml` (or preferred variant) → `~/.config/starship.toml`
+- `starship.toml` → `~/.config/starship.toml`
 - `ghostty.config` → `~/.config/ghostty/config`
 - `vesper` → Ghostty's theme directory
 
