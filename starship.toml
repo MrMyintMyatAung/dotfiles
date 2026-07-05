@@ -37,7 +37,6 @@ $golang\
 $java\
 $kotlin\
 $swift\
-$typescript\
 $c\
 $cpp\
 $zig\
@@ -257,11 +256,6 @@ symbol = "󰛩 "
 style = "bold fg:color_fg0 bg:color_sky"
 format = '[ $symbol ($version) ]($style)'
 
-[typescript]
-symbol = "󰌦 "
-style = "bold fg:color_fg0 bg:color_sky"
-format = '[ $symbol ($version) ]($style)'
-
 [c]
 symbol = "󰙱 "
 style = "bold fg:color_fg0 bg:color_sky"
@@ -339,7 +333,6 @@ charging_symbol= "󰂄 "
 discharging_symbol = "💀 "
 unknown_symbol = "󰂑 "
 empty_symbol   = "󰂎 "
-style = "bold bg:color_surface1"
 format = '[ $symbol $percentage ]($style)'
 display = [
   { threshold = 10, style = "bold fg:color_red bg:color_surface1" },
